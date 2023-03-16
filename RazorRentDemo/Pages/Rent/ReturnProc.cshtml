@@ -1,0 +1,20 @@
+﻿@page
+@model RazorRentDemo.Pages.Rent.ReturnProcModel
+@{
+}
+<ul>
+    <li>@Model.Reservation?.Car.Brand</li>
+    <li>@Model.Reservation?.Car.UnitPrice</li>
+</ul>
+
+<ul>
+    <li>@Model.Reservation?.CustomerName</li>
+    <li>@Model.Reservation?.Start</li>
+    <li>@Model.Reservation?.TotalPrice (estimated)</li>
+</ul>
+
+<a asp-page-handler="ReturnOK" asp-route-id="@Model.Reservation?.Id" class=" btn btn-danger">RETURN!</a>
+<a asp-page-handler="Test" class="btn btn-danger">TEST!</a>
+<h1>@ViewData["TESTDATAKEY"]</h1>
+<a asp-page-handler="Test2" class="btn btn-danger">TEST2!</a>
+<h1>@ViewData["TESTDATAKEY"]</h1>

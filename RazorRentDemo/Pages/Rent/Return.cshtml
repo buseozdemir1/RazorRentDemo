@@ -1,0 +1,49 @@
+﻿@page
+@model RazorRentDemo.Pages.Rent.ReturnModel
+
+@{
+    ViewData["Title"] = "Return";
+}
+
+<h1>Return</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Unit Price
+            </th>
+            <th>
+                Start
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resWithCar in Model.Reservations)
+        {
+            <tr>
+                <td>@resWithCar.CustomerName</td>
+                <td>
+                    @resWithCar.Car.Brand
+                </td>
+                <td>
+                    @resWithCar.Car.UnitPrice
+                </td>
+                <td>
+                    @resWithCar.Start.ToShortDateString()
+                </td>
+                <td>
+                    <a asp-page="ReturnProc" asp-route-id="@resWithCar.Id" class=" btn btn-outline-secondary">Return!</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

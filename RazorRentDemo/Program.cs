@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using RazorRentDemo.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<RentDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RentDbContext")));
 
 var app = builder.Build();
 

@@ -1,0 +1,49 @@
+﻿@page
+@model RazorRentDemo.Pages.Rent.IndexModel
+
+@{
+    ViewData["Title"] = "Reservation";
+}
+
+<h1>Make reservation</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Brand
+            </th>
+            <th>
+                UnitPrice
+            </th>
+            <th class="text-center">
+                Avaliable
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+                <td>
+                    @item.Brand
+                </td>
+                <td>
+                    @item.UnitPrice
+                </td>
+                <td class="text-center">
+                    @if (item.Avaliable)
+                    {
+                        <a asp-page="./Create" asp-route-id="@item.Id" class="btn btn-outline-primary">GO!</a>
+                    }
+                    else
+                    {
+                        <p>
+                            REZERVED
+                        </p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

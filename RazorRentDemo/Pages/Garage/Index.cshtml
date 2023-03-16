@@ -1,0 +1,66 @@
+﻿@page
+@model RazorRentDemo.Pages.Garage.IndexModel
+
+@{
+    ViewData["Title"] = "GARAJ";
+
+
+}
+
+<h1 class="display-6">GARAJ</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Add New Car</a>
+</p>
+<table id="garageTable" class="table">
+    <thead>
+        <tr>
+            <th>
+                Brand
+            </th>
+            <th>
+                UnitPrice
+            </th>
+            <th class="text-center">
+                Avaliable
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Car)
+        {
+            <tr>
+                <td>
+                    @item.Brand
+                </td>
+                <td>
+                    @item.UnitPrice
+                </td>
+                <td class="text-center">
+                    @{
+                        var result = item.Avaliable ? "OK" : "N/A";
+                    }
+                    @result
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-secondary">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="_Notification" />
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#garageTable').DataTable();
+        });
+
+
+    </script>
+    }
